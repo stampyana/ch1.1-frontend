@@ -33,7 +33,7 @@
     </q-card>
 
     <!-- Docker Concepts -->
-    <q-card>
+    <q-card class="q-mb-md">
       <q-card-section>
         <div class="text-h6">
           Docker Concepts (สรุปสั้น ๆ)
@@ -46,6 +46,32 @@
           >
             <q-item-section>
               <q-item-label>{{ item.title }}</q-item-label>
+              <q-item-label caption>
+                {{ item.detail }}
+              </q-item-label>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-card-section>
+    </q-card>
+
+    <!-- Docker Quick Reference -->
+    <q-card>
+      <q-card-section>
+        <div class="text-h6">
+          Docker Quick Reference
+        </div>
+
+        <q-list bordered separator class="q-mt-sm">
+          <q-item
+            v-for="(item, index) in dockerCommands"
+            :key="index"
+          >
+            <q-item-section>
+              <q-item-label class="text-weight-bold">
+                {{ item.command }}
+              </q-item-label>
+
               <q-item-label caption>
                 {{ item.detail }}
               </q-item-label>
@@ -97,6 +123,33 @@ const dockerItems = [
   {
     title: 'Network',
     detail: 'ช่วยให้บริการต่าง ๆ ใน Docker ติดต่อสื่อสารกันได้',
+  },
+]
+
+const dockerCommands = [
+  {
+    command: 'docker images',
+    detail: 'แสดงรายการ Docker Image ที่มีอยู่ในเครื่อง',
+  },
+  {
+    command: 'docker ps',
+    detail: 'แสดง Container ที่กำลังทำงานอยู่',
+  },
+  {
+    command: 'docker ps -a',
+    detail: 'แสดง Container ทั้งหมด รวมถึงตัวที่หยุดทำงาน',
+  },
+  {
+    command: 'docker build -t my-app .',
+    detail: 'สร้าง Docker Image จาก Dockerfile ในโฟลเดอร์ปัจจุบัน',
+  },
+  {
+    command: 'docker compose up -d',
+    detail: 'สร้างและเริ่มบริการตามไฟล์ Docker Compose แบบเบื้องหลัง',
+  },
+  {
+    command: 'docker compose down',
+    detail: 'หยุดและลบ Container กับ Network ที่ Compose สร้างขึ้น',
   },
 ]
 </script>
